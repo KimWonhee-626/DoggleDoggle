@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.dgBoard.mapper.dgBoardMapper">
+
+	<select id="dgNoticeBoardList" resultType="com.example.dgBoard.model.dgBoardVo">
+	
+		SELECT 
+				@rownum:=@rownum+1 DG_BOARD_NO,
+				DG_BOARD_USER_ID,
+				DG_BOARD_TITLE,
+				DG_BOARD_CONTENTS,
+		        DG_BOARD_NUM,
+				DG_BOARD_CREATED,
+				DG_BOARD_MODIFIED,
+				DG_BOARD_CATEGORY
+		FROM
+				DG_BOARD,
+				(SELECT @rownum:= 0)TMP
+				
+		WHERE
+				DG_BOARD_CATEGORY = 1
+	
+	</select>
+	
+
+
+</mapper>
